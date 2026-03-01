@@ -12,12 +12,9 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
-<<<<<<< HEAD
-=======
 import os
 import dj_database_url
 
->>>>>>> 0516c8cd6945c8e9b71f6a3d204d08e5d5d49ade
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -87,22 +84,11 @@ WSGI_APPLICATION = 'hotel_booking.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-import dj_database_url
 
 # Use dj-database-url for Render PostgreSQL
 DATABASES = {
-    'default': dj_database_url.config(
-<<<<<<< HEAD
-        default=f'postgres://postgres:0109james@localhost:5432/Hotel_db'
-=======
-        default='postgresql://postgres:0109james@localhost:5432/Hotel_db'
->>>>>>> 0516c8cd6945c8e9b71f6a3d204d08e5d5d49ade
-    )
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL', 'postgresql://postgres:0109james@localhost:5432/Hotel_db'))
 }
-
-# Override with environment variables if not using dj-database-url
-if os.environ.get('DATABASE_URL'):
-    DATABASES['default'] = dj_database_url.parse(os.environ.get('DATABASE_URL'))
 
 
 # Password validation
@@ -143,9 +129,6 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # WhiteNoise configuration for serving static files
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# Whitenoise storage for static files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media files (user-uploaded content)
