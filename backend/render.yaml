@@ -6,7 +6,7 @@ services:
     name: hotel-booking
     env: python
     region: oregon
-    buildCommand: pip install -r requirement.txt && cd .. && cd frontend && npm install && npm run build && cd ../backend && mkdir -p templates && cp -r ../frontend/dist/* templates/ && python manage.py collectstatic --noinput
+    buildCommand: pip install -r requirement.txt && python manage.py collectstatic --noinput && python manage.py migrate
     startCommand: gunicorn hotel_booking.wsgi
     envVars:
       - key: DJANGO_SECRET_KEY
